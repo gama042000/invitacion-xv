@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+ 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XV Rocío Angélica</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:'Poppins',sans-serif;
 text-align:center;
 background:linear-gradient(#e6f2ff,#ffffff);
+background-image:url("https://www.transparenttextures.com/patterns/floral-white.png");
 overflow-x:hidden;
 }
 
@@ -71,8 +73,32 @@ opacity:1;
 max-width:500px;
 margin:auto;
 }
+.seccion{
+min-height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+opacity:0;
+transform:translateY(40px);
+transition:all 1s;
+}
 
-h1{color:#0b2a6b;}
+.seccion.visible{
+opacity:1;
+transform:translateY(0);
+}
+h1{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+color:#0b2a6b;
+}
+
+h2{
+font-family:'Poppins',sans-serif;
+font-weight:600;
+}
 
 .boton{
 display:inline-block;
@@ -133,24 +159,38 @@ p{font-size:18px;}
 </div>
 </div>
 
-<div class="tarjeta" id="invitacion" style="display:none;">
+<div id="invitacion" style="display:none;">
+
+<section class="seccion tarjeta">
 
 <h1>Mis XV Años</h1>
-
 <h2>Rocío Angélica</h2>
 
-<p>27 de junio de 2026</p>
+</section>
 
+<section class="seccion tarjeta">
+
+<p>27 de junio de 2026</p>
 <p><b>Hora:</b> ________</p>
+
+</section>
+
+<section class="seccion tarjeta">
 
 <p>Dirección:</p>
 
-<p>Calle 10 mz 26 lote 48<br>
-Colonia Arturo Montiel</p>
+<p>
+Calle 10 mz 26 lote 48<br>
+Colonia Arturo Montiel
+</p>
 
 <p><b>Salón:</b> Tercera Cielo</p>
 
+</section>
+
 <br>
+
+<section class="seccion tarjeta">
 
 <p>Con la bendición de mis padres</p>
 
@@ -160,7 +200,11 @@ y<br>
 <b>Selene García de León</b>
 </p>
 
+</section>
+
 <div id="contador"></div>
+
+<section class="seccion tarjeta">
 
 <a class="boton maps"
 href="https://www.google.com/maps?q=19.427222,-98.988111"
@@ -173,6 +217,8 @@ href="https://wa.me/5215612966878?text=Confirmo%20mi%20asistencia%20a%20los%20XV
 target="_blank">
 Confirma tu asistencia
 </a>
+
+</section>
 
 <div class="galeria">
 
@@ -231,7 +277,26 @@ setTimeout(()=>{flor.remove();},8000);
 }
 
 setInterval(crearFlor,500);
+const secciones=document.querySelectorAll(".seccion");
 
+function mostrarSecciones(){
+
+const trigger=window.innerHeight*0.8;
+
+secciones.forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+
+if(top<trigger){
+sec.classList.add("visible");
+}
+
+});
+
+}
+
+window.addEventListener("scroll",mostrarSecciones);
+
+mostrarSecciones();
 </script>
 
 </body>
