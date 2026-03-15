@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XV Rocío Angélica</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(#e6f2ff,#ffffff);
+overflow-x:hidden;
+}
+
+.marco{
+border:8px solid #0b2a6b;
+border-radius:25px;
+margin:10px;
+padding:15px;
+}
+
+.sobre{
+width:260px;
+height:170px;
+background:#0b2a6b;
+margin:80px auto;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+}
+
+.tapa{
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-left:130px solid transparent;
+border-right:130px solid transparent;
+border-top:85px solid #173f9b;
+transform-origin:top;
+transition:1s;
+}
+
+.carta{
+position:absolute;
+top:20px;
+left:10px;
+right:10px;
+background:white;
+padding:20px;
+border-radius:10px;
+transform:translateY(100px);
+opacity:0;
+transition:1s;
+}
+
+.abierto .tapa{
+transform:rotateX(180deg);
+}
+
+.abierto .carta{
+transform:translateY(-60px);
+opacity:1;
+}
+
+.tarjeta{
+max-width:500px;
+margin:auto;
+}
+
+h1{color:#0b2a6b;}
+
+.boton{
+display:inline-block;
+margin:10px;
+padding:12px 20px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+font-size:16px;
+}
+
+.maps{background:#1a4fa3;}
+.whatsapp{background:#25D366;}
+
+#contador{
+font-size:22px;
+margin:15px;
+color:#0b2a6b;
+}
+
+.galeria img{
+width:100%;
+max-width:200px;
+margin:8px;
+border-radius:15px;
+}
+
+.flor{
+position:fixed;
+top:-50px;
+font-size:24px;
+animation:caer linear infinite;
+color:#4da6ff;
+}
+
+@keyframes caer{
+0%{transform:translateY(-50px) rotate(0deg);}
+100%{transform:translateY(100vh) rotate(360deg);}
+}
+
+@media(max-width:600px){
+h1{font-size:30px;}
+p{font-size:18px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="marco">
+
+<div class="sobre" onclick="abrirSobre()" id="sobre">
+<div class="tapa"></div>
+<div class="carta">
+<h3>Toca el sobre</h3>
+<p>Para abrir tu invitación</p>
+</div>
+</div>
+
+<div class="tarjeta" id="invitacion" style="display:none;">
+
+<h1>Mis XV Años</h1>
+
+<h2>Rocío Angélica</h2>
+
+<p>27 de junio de 2026</p>
+
+<p><b>Hora:</b> ________</p>
+
+<p>Dirección:</p>
+
+<p>Calle 10 mz 26 lote 48<br>
+Colonia Arturo Montiel</p>
+
+<p><b>Salón:</b> Tercera Cielo</p>
+
+<br>
+
+<p>Con la bendición de mis padres</p>
+
+<p>
+<b>Julio César</b><br>
+y<br>
+<b>Selene García de León</b>
+</p>
+
+<div id="contador"></div>
+
+<a class="boton maps"
+href="https://maps.google.com/?q=Calle+10+mz+26+lote+48+colonia+Arturo+Montiel"
+target="_blank">
+Ver ubicación
+</a>
+
+<a class="boton whatsapp"
+href="https://wa.me/5215612966878?text=Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Rocío%20Angélica"
+target="_blank">
+Confirmar asistencia
+</a>
+
+<div class="galeria">
+
+<h3>Galería</h3>
+
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+
+</div>
+
+</div>
+
+</div>
+
+<audio autoplay loop controls>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function abrirSobre(){
+document.getElementById("sobre").classList.add("abierto");
+setTimeout(()=>{
+document.getElementById("invitacion").style.display="block";
+},800);
+}
+
+/* contador (se activará cuando pongas la hora exacta) */
+
+var fechaEvento=new Date("Jun 27, 2026 19:00:00").getTime();
+
+setInterval(function(){
+
+var ahora=new Date().getTime();
+var distancia=fechaEvento-ahora;
+
+var dias=Math.floor(distancia/(1000*60*60*24));
+var horas=Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+var minutos=Math.floor((distancia%(1000*60*60))/(1000*60));
+var segundos=Math.floor((distancia%(1000*60))/1000);
+
+document.getElementById("contador").innerHTML=
+dias+" días "+horas+"h "+minutos+"m "+segundos+"s";
+
+},1000);
+
+function crearFlor(){
+var flor=document.createElement("div");
+flor.classList.add("flor");
+flor.innerHTML="🌸";
+flor.style.left=Math.random()*100+"vw";
+flor.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(flor);
+setTimeout(()=>{flor.remove();},8000);
+}
+
+setInterval(crearFlor,500);
+
+</script>
+
+</body>
+</html>
