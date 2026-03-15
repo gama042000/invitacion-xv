@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- 
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XV Rocío Angélica</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 
 body{
@@ -13,9 +15,22 @@ margin:0;
 font-family:'Poppins',sans-serif;
 text-align:center;
 background:linear-gradient(#e6f2ff,#ffffff);
-background-image:url("https://www.transparenttextures.com/patterns/floral-white.png");
 overflow-x:hidden;
 }
+
+/* flores decorativas esquinas */
+
+.decoracion{
+position:fixed;
+font-size:60px;
+opacity:0.3;
+z-index:-1;
+}
+
+.flor1{top:20px;left:20px;}
+.flor2{top:20px;right:20px;}
+.flor3{bottom:20px;left:20px;}
+.flor4{bottom:20px;right:20px;}
 
 .marco{
 border:8px solid #0b2a6b;
@@ -23,6 +38,8 @@ border-radius:25px;
 margin:10px;
 padding:15px;
 }
+
+/* SOBRE */
 
 .sobre{
 width:260px;
@@ -69,10 +86,13 @@ transform:translateY(-60px);
 opacity:1;
 }
 
+/* TARJETAS */
+
 .tarjeta{
 max-width:500px;
 margin:auto;
 }
+
 .seccion{
 min-height:80vh;
 display:flex;
@@ -89,21 +109,32 @@ transition:all 1s;
 opacity:1;
 transform:translateY(0);
 }
+
+/* TITULOS */
+
 h1{
 font-family:'Great Vibes',cursive;
-font-size:60px;
+font-size:65px;
 color:#0b2a6b;
+animation:brillo 3s infinite;
+}
+
+@keyframes brillo{
+0%{text-shadow:0 0 5px #fff;}
+50%{text-shadow:0 0 20px #7db3ff;}
+100%{text-shadow:0 0 5px #fff;}
 }
 
 h2{
-font-family:'Poppins',sans-serif;
 font-weight:600;
 }
+
+/* BOTONES */
 
 .boton{
 display:inline-block;
 margin:10px;
-padding:12px 20px;
+padding:14px 24px;
 border-radius:25px;
 text-decoration:none;
 color:white;
@@ -113,18 +144,30 @@ font-size:16px;
 .maps{background:#1a4fa3;}
 .whatsapp{background:#25D366;}
 
+/* CONTADOR */
+
 #contador{
-font-size:22px;
+font-size:24px;
 margin:15px;
 color:#0b2a6b;
+font-weight:600;
+}
+
+/* GALERIA */
+
+.galeria{
+display:flex;
+overflow-x:auto;
+gap:10px;
+padding:10px;
 }
 
 .galeria img{
-width:100%;
-max-width:200px;
-margin:8px;
+width:220px;
 border-radius:15px;
 }
+
+/* FLORES ANIMADAS */
 
 .flor{
 position:fixed;
@@ -139,15 +182,35 @@ color:#4da6ff;
 100%{transform:translateY(100vh) rotate(360deg);}
 }
 
+/* MUSICA */
+
+.boton-musica{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0b2a6b;
+color:white;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+}
+
+/* RESPONSIVE */
+
 @media(max-width:600px){
-h1{font-size:30px;}
-p{font-size:18px;}
+h1{font-size:40px;}
 }
 
 </style>
 </head>
 
 <body>
+
+<div class="decoracion flor1">🌸</div>
+<div class="decoracion flor2">🌸</div>
+<div class="decoracion flor3">🌸</div>
+<div class="decoracion flor4">🌸</div>
 
 <div class="marco">
 
@@ -162,47 +225,37 @@ p{font-size:18px;}
 <div id="invitacion" style="display:none;">
 
 <section class="seccion tarjeta">
-
 <h1>Mis XV Años</h1>
 <h2>Rocío Angélica</h2>
-
 </section>
 
 <section class="seccion tarjeta">
-
 <p>27 de junio de 2026</p>
 <p><b>Hora:</b> ________</p>
-
 </section>
 
 <section class="seccion tarjeta">
-
 <p>Dirección:</p>
-
 <p>
 Calle 10 mz 26 lote 48<br>
 Colonia Arturo Montiel
 </p>
-
 <p><b>Salón:</b> Tercera Cielo</p>
-
 </section>
 
-<br>
-
 <section class="seccion tarjeta">
-
 <p>Con la bendición de mis padres</p>
-
 <p>
 <b>Julio César</b><br>
 y<br>
 <b>Selene García de León</b>
 </p>
-
 </section>
 
+<section class="seccion tarjeta">
+<h3>Faltan</h3>
 <div id="contador"></div>
+</section>
 
 <section class="seccion tarjeta">
 
@@ -220,9 +273,11 @@ Confirma tu asistencia
 
 </section>
 
-<div class="galeria">
+<section class="seccion tarjeta">
 
 <h3>Galería</h3>
+
+<div class="galeria">
 
 <img src="foto1.jpg">
 <img src="foto2.jpg">
@@ -230,15 +285,20 @@ Confirma tu asistencia
 
 </div>
 
-</div>
+</section>
 
 </div>
+</div>
 
-<audio autoplay loop controls>
+<audio id="musica" loop>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
+<div class="boton-musica" onclick="toggleMusica()">🎵 Música</div>
+
 <script>
+
+/* SOBRE */
 
 function abrirSobre(){
 document.getElementById("sobre").classList.add("abierto");
@@ -247,7 +307,23 @@ document.getElementById("invitacion").style.display="block";
 },800);
 }
 
-/* contador (se activará cuando pongas la hora exacta) */
+/* MUSICA */
+
+const musica=document.getElementById("musica");
+
+window.addEventListener("load",()=>{
+musica.play().catch(()=>{});
+});
+
+function toggleMusica(){
+if(musica.paused){
+musica.play();
+}else{
+musica.pause();
+}
+}
+
+/* CONTADOR */
 
 var fechaEvento=new Date("Jun 27, 2026 19:00:00").getTime();
 
@@ -266,6 +342,8 @@ dias+" días "+horas+"h "+minutos+"m "+segundos+"s";
 
 },1000);
 
+/* FLORES */
+
 function crearFlor(){
 var flor=document.createElement("div");
 flor.classList.add("flor");
@@ -277,6 +355,9 @@ setTimeout(()=>{flor.remove();},8000);
 }
 
 setInterval(crearFlor,500);
+
+/* SCROLL ANIMACION */
+
 const secciones=document.querySelectorAll(".seccion");
 
 function mostrarSecciones(){
@@ -297,6 +378,7 @@ sec.classList.add("visible");
 window.addEventListener("scroll",mostrarSecciones);
 
 mostrarSecciones();
+
 </script>
 
 </body>
